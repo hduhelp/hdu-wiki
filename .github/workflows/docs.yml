@@ -32,6 +32,7 @@ jobs:
 
       - name: mv files to a directory
         run: |
+          mkdir dist
           for file in 'ls pages'; do mv pages/${file}/* dist;  done;
         
       - run: coscmd upload -rs index.json wiki/index.json
