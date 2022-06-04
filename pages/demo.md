@@ -1,0 +1,109 @@
+# 助手OAuth对接文档
+
+## 概念
+
+callback：您服务接收oauth返回code和state（可选）的路由
+
+redirect url：callback对应的url
+
+## 步骤
+
+getAuthUrl(clientID,redirectUrl,state)并跳转
+
+在callback中：getAccessToken(code)->validate->助手数据接口（如getPersonInfo）
+
+### 发起请求（询问用户授权）
+
+构造URL:`https://api.hduhelp.com/oauth/authorize?response_type=code&client_id=[提供的clientID]&redirect_uri=[callback对应的url]&state=[您自己生成的state]`
+
+发起302跳转，使用户浏览器访问这个URL（或者由前端完成这一步骤）
+
+### callback路由的格式
+
+callback路由应使用GET方法，有三个query：code,state和一个助手特有的serverVerify
+
+#### 关于serverVerify参数的特别说明
+
+这个参数实际上是接入`app.hduhelp.com`下，此时用户已经登录助手的情况，此时网关直接主动发起302跳转到您服务的**默认**redirect url，从而直接跳过OAuth流程，直接登录目标服务
+
+当serverVerify参数为true时，您不应该校验state，而应该注意校验请求是否来自`api.hduhelp.com`，以缓解非利用助手的CSRF攻击
+
+注意：该特性可选，若您不想接入助手网页端免登录，可以忽略该特性
+
+### getAccessToken(授权服务器给予token)
+
+Method:GET
+
+构造URL:`https://api.hduhelp.com/oauth/token?client_id=[提供的clientID]&client_secret=[提供的client_secret]&grant_type=authorization_code&code=[callback中传入的code]&state=[callback中传入的state]`
+
+响应示例：
+
+```json
+{
+	"error":0,
+	"msg":"success",
+	"data":{
+		"access_token":"[access_token]",
+		"access_token_expire":[access token 过期时间],
+    	"refresh_token":"[refresh_token]",
+        "refresh_token_expire":[refresh token 过期时间],
+        "staff_id":"[用户学号/工号]"
+	}
+}
+```
+
+### validate
+
+Method:GET
+
+URL:`https://api.hduhelp.com/oauth/token/validate`
+
+Header:`Authorization` 值：`token [access token]`
+
+响应示例：
+
+```json
+{
+	"error":0,
+	"msg":"success",
+	"data":{
+		"access_token":"[access_token]",
+		"access_token_expire":[access token 过期时间],
+        "staff_id":"[用户学号/工号]"
+	}
+}
+```
+
+### 调用助手数据接口-以getPersonInfo为例
+
+Method:GET
+
+URL:`https://api.hduhelp.com/base/person/info`
+
+Header:`Authorization` 值：`token [access token]`
+
+注意：调用助手数据接口一般的鉴权方式都是通过Authorization头传递access token
+
+响应示例：
+
+```json
+{
+	"error":0,
+	"msg":"success",
+	"data":{
+		"STAFFID":"[用户学号/工号]",
+        "GRADE":"[年级]",
+        "STAFFNAME":"[姓名]",
+        "STAFFTYPE":"[用户类型：本科生，教职工，研究生等]",
+        "STAFFSTATE":"[用户状态：在校等]",
+        "UNITCODE":"[学院代码]",
+        "UNITNAME":"[学院名称]"
+	}
+}
+```
+
+## 技术支持
+
+如果错误发生在助手的页面：联系给您这份文档的人，把页面上显示的5位错误码和错误原因发给他
+
+如果错误发生在您自己的程序并且您能基本确定您已完全满足该文档未标注可选的要求：请联系给您这份文档的人

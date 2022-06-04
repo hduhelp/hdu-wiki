@@ -1,0 +1,36 @@
+name: release pages
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  QCLOUD_BUCKET: qiscord-1258813882
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+
+      - name: Deploy to Tencent COS
+        env:
+          SECRET_ID: ${{ secrets.QCLOUD_KEY }}
+          SECRET_KEY: ${{ secrets.QCLOUD_SECRET }}
+          BUCKET: ${{ env.QCLOUD_BUCKET }}
+          REGION: ap-shanghai
+        run: |
+          sudo pip install coscmd
+          coscmd config -a ${SECRET_ID} -s ${SECRET_KEY} -b ${BUCKET} -e cos.accelerate.myqcloud.com
+          coscmd probe
+        
+      - run: coscmd upload -rs index.json wiki/index.json
+        continue-on-error: true
+      - run: coscmd upload -rs pages/ wiki/
+        continue-on-error: true
