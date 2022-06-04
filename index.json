@@ -1,8 +1,8 @@
 [
   {
-    "id": "content",
+    "id": "杭电导航",
     "name": "杭电导航",
-    "open": false,
+    "open": true,
     "pages": [
       {"name": "一卡通"},
       {"name": "上校园网"},
@@ -27,7 +27,7 @@
     ]
   },
   {
-    "id": "content",
+    "id": "助手OAuth对接文档",
     "name": "助手OAuth对接文档",
     "open": false,
     "pages": [
