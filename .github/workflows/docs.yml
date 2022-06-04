@@ -21,8 +21,8 @@ jobs:
 
       - name: Deploy to Tencent COS
         env:
-          SECRET_ID: ${{ secrets.QCLOUD_KEY }}
-          SECRET_KEY: ${{ secrets.QCLOUD_SECRET }}
+          SECRET_ID: ${{ secrets.TENCENT_KEY_FOR_PUBLIC_REPO }}
+          SECRET_KEY: ${{ secrets.TENCENT_SECERT_FOR_PUBLIC_REPO }}
           BUCKET: ${{ env.QCLOUD_BUCKET }}
           REGION: ap-shanghai
         run: |
