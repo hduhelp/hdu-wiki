@@ -29,8 +29,12 @@ jobs:
           sudo pip install coscmd
           coscmd config -a ${SECRET_ID} -s ${SECRET_KEY} -b ${BUCKET} -e cos.accelerate.myqcloud.com
           coscmd probe
+
+      - name: mv files to a directory
+        run: |
+          for file in 'ls pages'; do mv pages/${file}/* dist;  done;
         
       - run: coscmd upload -rs index.json wiki/index.json
         continue-on-error: true
-      - run: coscmd upload -rs pages/ wiki/
+      - run: coscmd upload -rs dist/ wiki/
         continue-on-error: true
