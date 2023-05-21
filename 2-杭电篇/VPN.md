@@ -1,3 +1,15 @@
+---
+title: VPN
+description:
+published: true
+date: 2023-05-21T07:02:58.711Z
+tags:
+editor: markdown
+dateCreated: 2023-05-21T06:48:41.517Z
+---
+
+> 本文来源于[**杭电指北**](https://www.yuque.com/hduer/guide)
+
 为了让广大师生在外面也可以访问到学校内部的资源，VPN一般每个学校都会有的。杭电也有自己的VPN服务。
 
 - VPN:  [https://sslvpn.hdu.edu.cn/](https://sslvpn.hdu.edu.cn/)
