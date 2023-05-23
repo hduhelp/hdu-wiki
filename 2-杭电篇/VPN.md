@@ -12,11 +12,11 @@ dateCreated: 2023-05-21T11:24:03.428Z
 
 为了让广大师生在外面也可以访问到学校内部的资源，VPN一般每个学校都会有的。杭电也有自己的VPN服务。
 
-- VPN:  [https://sslvpn.hdu.edu.cn/](https://sslvpn.hdu.edu.cn/)
+- VPN:  [https://sslvpn.hdu.edu.cn/](https://sslvpn.hdu.edu.cn/)(已弃用)
 
 但是由于VPN的账号数量有限，不能像浙大一样人手一个账号，因此只能通过分时复用手段来满足大部分的需求。即，使用VPN之前需要先申请一个VPN账号，有效期24小时。
 
-- VPN申请：[https://pwd.hdu.edu.cn/vpn.aspx](https://pwd.hdu.edu.cn/vpn.aspx)
+- VPN申请：[https://pwd.hdu.edu.cn/vpn.aspx](https://pwd.hdu.edu.cn/vpn.aspx) (已弃用)
 
 申请完成账号即可使用申请得到的VPN账号登录了，需要安装VPN客户端，安装完成后直接在网页上登录即可。
 
@@ -24,6 +24,6 @@ dateCreated: 2023-05-21T11:24:03.428Z
 
 注意：VPN登录之后是不能访问外网的（例如百度）。
 
-- WebVPN: https://webvpn.hdu.edu.cn/
+- WebVPN: [https://webvpn.hdu.edu.cn/](https://webvpn.hdu.edu.cn/)
 
 学校后来提供了WebVPN服务，使用这个方法就不需要安装VPN客户端，通过这个链接登录智慧杭电就可以访问大部分学校资源。
