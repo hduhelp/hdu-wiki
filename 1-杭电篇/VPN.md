@@ -2,13 +2,23 @@
 title: VPN
 description: 
 published: true
-date: 2023-06-21T17:31:21.874Z
+date: 2023-06-25T15:47:39.065Z
 tags: 来源：杭电指北
 editor: markdown
-dateCreated: 2023-05-24T15:13:39.685Z
+dateCreated: 2023-06-25T09:02:39.044Z
 ---
 
 为了让广大师生在外面也可以访问到学校内部的资源，VPN一般每个学校都会有的。杭电也有自己的VPN服务。
+
+## WebVPN
+
+- WebVPN:<https://webvpn.hdu.edu.cn>
+
+跳转杭电统一身份认证，登陆后可以查看可以访问的资源。
+
+WebVPN 从技术上说并不是传统意义上的 VPN，更像是是一种带有身份认证的反向代理。他通过反向代理的方法暴露内网资源，并通过身份认证和访问控制机制控制公网对这些暴露的资源的访问，确保安全。
+
+## Sangfor VPN （弃用）
 
 - VPN:  [https://sslvpn.hdu.edu.cn/](https://sslvpn.hdu.edu.cn/)
 
